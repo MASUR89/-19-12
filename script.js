@@ -4,7 +4,7 @@ async function fetchData() {
     try {
         const comments = await fetch("https://jsonplaceholder.typicode.com/comments");
         const postId = await comments.json();
-        console.log(postId);
+        // console.log(postId);
     } catch (error) {
         console.error(error);
     }
@@ -12,36 +12,53 @@ async function fetchData() {
 fetchData();
 }, 3000);
 
-//----------------------
-const input = document.getElementById("taskInput");
-const button1 = document.getElementById("addTask");
-const tasks = document.getElementById("taskList");
-
-button1.addEventListener('click', () => {
-    const task = input.value.trim();
-
-    if (task !== "") {
-        addTaskToList(task);
-        saveTask(task);
-        task.value = "";
-    }else {
-        alert("Enter task");
+//----------------------24/12/24
+class Person {
+    constructor(city, age) {
+        this.city = city;
+        this.age = age
     }
 
+    greet() {
+        console.log(`name is ${this.city} and age is ${this.age}`);
+    }
+}
+const person1 = new Person("Tbilisi", 20);
+person1.greet()
 
-})
-function addTaskToList(task) {
-    const listItem = document.createElement('li');
-    listItem.textContent = task;
-    tasks.appendchild(listItem);
+//---
+class Animal {
+    constructor(nick, color){
+        this.nick = nick;
+        this.color = color;
+    }
+
+    speak() {
+        console.log(`This ${this.color} animal name is ${this.nick}`);
+    }
 }
 
-function saveTask (task) {
-    let taskebi = JSON.parse(localStorage.getItem('taskebi')) || [];
-    taskebi.push(task);
-    localStorage.setItem('taskebi', JSON.stringify(taskebi));
+// class Dog extends Animal {
+//     speak(){
+//         console.log(`this ${this.color} dog is ${this.nik}`);
+//     }
+// }
+
+class Cat extends Animal {
+    constructor (nick, color, size) {
+        super(nick, color);
+        this.size = size;
+    }
+
+    display(){
+        console.log(`the ${this.color} cat is ${this.size} and it's name is ${this.nick}`);
+    }
 }
 
-function loadTasks () {
 
-}
+// const dog1 = new Dog("Charly", "black");
+// dog1.speak();
+
+const cat1 = new Cat( "mimi", "grey","big");
+cat1.display();
+cat1.speak();
